@@ -1,4 +1,5 @@
 import os
+import time
 from functools import wraps
 from flask import request
 from dataclasses import dataclass
@@ -7,12 +8,13 @@ from okta_jwt_verifier import JWTVerifier
 from okta_jwt_verifier.exceptions import JWTValidationException
 
 
+TOKEN_CACHE = {}
+
 ISSUER = 'https://{}/oauth2/default'.format(os.getenv('OKTA_DOMAIN'))
 CLIENT_ID = os.getenv('OKTA_CLIENT_ID')
 
 @dataclass
 class TokenData:
-    token: str
     kid: str
     alg: str
     ver: int
@@ -81,12 +83,22 @@ def validate_token(f):
         # Extract the token from the header
         token = auth_header_parts[1]
 
+        # Check if token is already validated and not expired
+        if token in TOKEN_CACHE:
+            token_data = TOKEN_CACHE[token]
+            if time.time() < token_data.exp:
+                # Call the function
+                return f(*args, username=token_data.sub, **kwargs)
+            else:
+                # Remove expired token from cache
+                del TOKEN_CACHE[token]
+
+        print('Invoking OKTA...')
         result = asyncio.run(_authenticate(token))
 
         if result['validation_result']['status'] == 'ok':
             header, payload, signature, _ = result['token_parsing_result']
             token_data = TokenData(
-                token=token,
                 kid=header['kid'],
                 alg=header['alg'],
                 ver=payload['ver'],
@@ -104,8 +116,11 @@ def validate_token(f):
                 jwt_header=header
             )
 
+            # Store token in cache
+            TOKEN_CACHE[token] = token_data
+
             # Call the function
-            return f(*args, **kwargs)
+            return f(*args, username=token_data.sub, **kwargs)
         
         else:
             return {'message': 'Invalid or expired token. Please log in again.'}, 401

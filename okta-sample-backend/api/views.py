@@ -14,8 +14,8 @@ def api():
 
 @app.route('/api/echo/')
 @validate_token
-def echo():
-    return {'message': 'Welcome from the Backend'}
+def echo(username: str):
+    return {'message': f'Welcome {username} from the Backend'}
 
 @app.errorhandler(404)
 def page_not_found(error):
