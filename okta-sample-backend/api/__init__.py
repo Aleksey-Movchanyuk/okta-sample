@@ -5,7 +5,10 @@ from api.utils import start_garbage_cleaner
 
 # create the Flask application instance
 app = Flask(__name__)
+app.debug = True
+
 CORS(app)
+
 
 start_garbage_cleaner()
 

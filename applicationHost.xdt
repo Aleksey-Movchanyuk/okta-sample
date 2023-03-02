@@ -3,14 +3,14 @@
 	<system.webServer>
 		<fastCgi>
 			<application xdt:Locator="Match(fullPath)" xdt:Transform="InsertIfMissing"
-                fullPath="C:\home\python364x86\python.exe"
-                arguments="C:\home\python364x86\wfastcgi.py"
+                fullPath="C:\home\python3111x64\python.exe"
+                arguments="C:\home\python3111x64\wfastcgi.py"
                 maxInstances="16"
                 idleTimeout="21600"
                 instanceMaxRequests="10000000"
                 signalBeforeTerminateSeconds="60">
 				<environmentVariables>
-					<environmentVariable name="PYTHONHOME" value="C:\home\python364x86" />
+					<environmentVariable name="PYTHONHOME" value="C:\home\python3111x64" />
 				</environmentVariables>
 			</application>
 		</fastCgi>
