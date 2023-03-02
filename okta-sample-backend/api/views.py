@@ -1,7 +1,15 @@
 from api import app
-from flask import render_template
+from flask import render_template, request
 
-# define a route for the homepage
-@app.route("/")
-def index():
-    return render_template("index.html")
+
+@app.route("/api/")
+def api():
+    return 'Welcome to API\n'
+
+@app.route('/')
+def root():
+    return 'root\n'
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return f"404 Error: Page not found {request.path}\n"
