@@ -20,11 +20,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private addAuthHeaderToAllowedOrigins(request: HttpRequest<unknown>): HttpRequest<unknown> {
     let req = request;
-    const allowedOrigins = ['http://localhost',];
+    /*const allowedOrigins = ['http://localhost:5000/api','https://iap-fractal-dev.azurewebsites.net/api'];
     if(!!allowedOrigins.find(origin => request.url.includes(origin))) {
       const authToken = this._oktaAuth.getAccessToken();
       req = request.clone({ setHeaders: { 'Authorization': `Bearer ${authToken}` } });
-    }
+    }*/
+
+    const authToken = this._oktaAuth.getAccessToken();
+    req = request.clone({ setHeaders: { 'Authorization': `Bearer ${authToken}` } });
 
     return req;
   }
