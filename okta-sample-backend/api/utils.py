@@ -8,15 +8,11 @@ from api.decorators import TOKEN_CACHE
 
 def _garbage_cleaner():
     while True:
-        now = int(datetime.now().timestamp())
+        now = datetime.utcnow().timestamp()
 
-        expired_tokens = [
-            token for token, data in TOKEN_CACHE.items()
-            if data['exp'] <= now
-        ]
-
-        for token in expired_tokens:
-            del TOKEN_CACHE[token]
+        tokens_to_remove = [key for key, data in TOKEN_CACHE.items() if data.exp <= now]
+        for token in tokens_to_remove:
+            TOKEN_CACHE.pop(token, None)
 
         time.sleep(60)
 
