@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   oktaDomain: "dev-43780148.okta.com",
   oktaClientId: "0oa7x1m0wlNnvT1G95d7",
+  apiUrl: "http://localhost:5000/api/",
 };
 
 /*
