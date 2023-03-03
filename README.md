@@ -37,3 +37,15 @@ python -m pip install okta_jwt_verifier
 
 $Env:PATH += ";C:\home\python3111x64\Scripts"
 ```
+
+### Angular Build Commands
+
+#### Development environment
+```
+ng build
+```
+
+#### Production environment
+```
+ng build --configuration=production
+```
