@@ -3,6 +3,47 @@
 * Angular 13 - Frontend
 * Flask/Python 3.11 - Backend
 
+
+### Prerequisites
+
+#### DevOps role
+
+##### Azure CLI
+
+```
+python -m pip install --user --upgrade pip
+python -m pip --version
+
+python -m pip install azure-cli
+
+az version
+```
+
+##### Terraform
+
+https://learn.microsoft.com/en-us/azure/developer/terraform/get-started-windows-bash?tabs=bash
+
+```
+terraform -version
+```
+
+#### Backend developer role
+
+TODO 
+
+```
+some script
+```
+
+#### Fronend developer role
+
+TODO
+
+```
+some script
+```
+
+
 ### OKTA DEV
 
 
