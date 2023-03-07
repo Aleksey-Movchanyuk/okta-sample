@@ -12,5 +12,4 @@ python token_validation.py
 $Env:FLASK_APP="api"
 
 $Env:FLASK_ENV="test"
-
 ```
