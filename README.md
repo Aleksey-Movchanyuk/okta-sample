@@ -14,6 +14,7 @@
 python -m pip install --user --upgrade pip
 python -m pip --version
 
+python -m pip install pip-system-certs
 python -m pip install azure-cli
 
 az version
