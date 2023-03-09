@@ -27,5 +27,4 @@ COPY okta-sample-frontend/dist/ /app/frontend/
 EXPOSE 80
 
 # Start Nginx and Gunicorn (or your preferred WSGI server)
-#CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:5000 backend.wsgi:api
-CMD gunicorn -w 4 -b 0.0.0.0:5000 backend.api:app
+CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:5000 backend.api:app
