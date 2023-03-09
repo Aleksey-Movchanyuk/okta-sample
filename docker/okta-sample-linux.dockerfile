@@ -13,7 +13,7 @@ WORKDIR /app
 # Copy and unzip backend code
 COPY okta-sample-backend/dist/okta-sample-backend-1.0.tar.gz /app/
 RUN tar -xvf okta-sample-backend-1.0.tar.gz && rm okta-sample-backend-1.0.tar.gz
-#COPY okta-sample-backend-1.0/ /app/backend/
+RUN mv okta-sample-backend-1.0/ backend/
 
 # Install Python dependencies
 #RUN pip install --no-cache-dir /app/backend/
