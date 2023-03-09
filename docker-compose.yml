@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+  okta-sample-linux:
+    build:
+      context: .
+      dockerfile: docker/okta-sample-linux.dockerfile
+    container_name: okta-sample-linux-container
+    restart: always
+    environment:
+      - AIRFLOW_HOME=/usr/local/airflow
+      - LOAD_EXAMPLES=False
+      - EXECUTOR=LocalExecutor
+    ports:
+      - "80:80"
+      - "5000:5000"
+    command: webserver
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    networks:
+      - backbone
+
+networks:
+  backbone:
+    driver: bridge
