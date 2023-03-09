@@ -1,8 +1,17 @@
 ```
-sudo apt install nodejs
+cd ~
+curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+chmod 777 nodesource_setup.sh
+sudo ./nodesource_setup.sh
+sudo apt-get install -y nodejs
+
+node -v
+
 sudo apt install npm
 
-npm install -g @angular/cli@13.1.0
+sudo npm install -g @angular/cli@13.1.0
+
+ng build --configuration=production
 ```
 
 
