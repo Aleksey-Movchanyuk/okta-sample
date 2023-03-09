@@ -11,3 +11,4 @@ services:
     environment:
       OKTA_DOMAIN: dev-43780148.okta.com
       OKTA_CLIENT_ID: 0oa5uj9kwdMhBfhyV5d7
+    tty: true
