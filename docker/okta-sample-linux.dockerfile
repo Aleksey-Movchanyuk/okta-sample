@@ -13,11 +13,10 @@ WORKDIR /app
 # Copy and unzip backend code
 COPY okta-sample-backend/dist/okta-sample-backend-1.0.tar.gz /app/
 RUN tar -xvf okta-sample-backend-1.0.tar.gz && rm okta-sample-backend-1.0.tar.gz
-RUN dir -s 
-COPY okta-sample-backend-1.0/ /app/backend/
+#COPY okta-sample-backend-1.0/ /app/backend/
 
 # Install Python dependencies
-RUN pip install --no-cache-dir /app/backend/
+#RUN pip install --no-cache-dir /app/backend/
 
 # Copy frontend code
 COPY okta-sample-frontend/dist/ /app/frontend/
@@ -26,4 +25,5 @@ COPY okta-sample-frontend/dist/ /app/frontend/
 EXPOSE 80
 
 # Start Nginx and Gunicorn (or your preferred WSGI server)
-CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:5000 backend.wsgi:app
+#CMD service nginx start && gunicorn -w 4 -b 0.0.0.0:5000 backend.wsgi:app
+CMD service nginx start
