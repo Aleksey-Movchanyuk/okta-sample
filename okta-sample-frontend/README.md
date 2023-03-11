@@ -1,19 +1,40 @@
+# Prerequisite
+
+## Linux
+
 ```
 cd ~
 curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
 chmod 777 nodesource_setup.sh
-sudo ./nodesource_setup.sh
-sudo apt-get install -y nodejs
-
+./nodesource_setup.sh
+apt-get install -y nodejs
 node -v
 
-sudo apt install npm
+apt install npm
+npm -v
 
-sudo npm install -g @angular/cli@13.1.0
-
-ng build --configuration=production
+npm install -g @angular/cli@13.1.0
 ```
 
+## MacOS
+
+```
+node -v
+npm -v
+```
+
+### Setup nodenv
+```
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+```
+
+### Install Angular globaly
+```
+export PATH=~/.npm-global/bin:$PATH
+source ~/.profile
+npm install -g @angular/cli@13.1.0
+```
 
 # OktaSampleFrontend
 
@@ -30,6 +51,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+```
+ng build --configuration=production
+```
 
 ## Running unit tests
 
