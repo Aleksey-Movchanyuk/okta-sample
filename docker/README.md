@@ -41,31 +41,29 @@ docker-compose -f docker-compose.yml up -d --build
 docker-compose -f docker-compose.yml up -d --no-build
 docker-compose -f docker-compose.yml down
 
-docker-compose -f docker-compose.yml build iap-database
-docker-compose -f docker-compose.yml up -d --no-build iap-database
-docker-compose -f docker-compose.yml stop iap-database
+docker-compose -f docker-compose.yml build okta-sample-linux
+docker-compose -f docker-compose.yml up -d --no-build okta-sample-linux
+docker-compose -f docker-compose.yml stop okta-sample-linux
 
-docker-compose -f docker-compose.yml build iap-backend
-docker-compose -f docker-compose.yml up -d --no-build iap-backend
-docker-compose -f docker-compose.yml stop iap-backend
+docker-compose -f docker-compose.yml build okta-sample-linux
+docker-compose -f docker-compose.yml up -d --no-build okta-sample-linux
+docker-compose -f docker-compose.yml stop okta-sample-linux
 
-docker-compose -f docker-compose.yml build iap-frontend
-docker-compose -f docker-compose.yml up -d --no-build iap-frontend
-docker-compose -f docker-compose.yml stop iap-frontend
+docker exec -it okta-sample-linux /bin/bash
+docker exec --user="root" -it okta-sample-linux /bin/bash
 
-docker exec -it iap_backend /bin/bash
-docker exec --user="root" -it iap_backend /bin/bash
-
-docker-compose -f docker-compose.yml run iap-backend /bin/bash
-docker-compose -f docker-compose.yml run iap-frontend /bin/bash
+docker-compose -f docker-compose.yml run okta-sample-linux /bin/bash
 
 docker-compose down --volumes
 
 docker image ls --all
 docker image prune -a --force
 
-docker tag 56ef77140652 gcr.io/iap-frontend/iap-frontend:2.1.2.8
-docker push gcr.io/gcp-project-abc/iap-frontend:2.1.2.8
+https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication?tabs=azure-cli#admin-account
+docker login oktasampleregistry.azurecr.io
+
+docker tag 39ac8d6b5e36 oktasampleregistry.azurecr.io/okta-sample-linux:v1.0
+docker push oktasampleregistry.azurecr.io/okta-sample-linux:v1.0
 ```
 
 Restart Docker daemon
