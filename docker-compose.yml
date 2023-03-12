@@ -8,7 +8,10 @@ services:
       dockerfile: docker/okta-sample-linux.dockerfile
     ports:
       - "80:80"
+      - "5000:5000"
+    #command: service nginx start && gunicorn -w 4 -b 0.0.0.0:5000 api:app
     environment:
       OKTA_DOMAIN: dev-43780148.okta.com
-      OKTA_CLIENT_ID: 0oa5uj9kwdMhBfhyV5d7
+      OKTA_CLIENT_ID: 0oa8kbfrabKRT7JAv5d7
+      FLASK_APP: api
     tty: true
